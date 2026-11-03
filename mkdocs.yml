@@ -1,0 +1,158 @@
+# ==================================================================
+# CaptureMoment - MkDocs configuration
+# Generates the user/contributor guide site from docs/*.md
+# ==================================================================
+
+site_name: CaptureMoment Docs
+site_description: >
+  Documentation of CaptureMoment — a free, open-source, non-destructive
+  photo editing application (GPLv3) for Windows, macOS and Linux.
+site_url: https://capture-moment.github.io/docs/
+repo_url: https://github.com/Capture-Moment/docs
+repo_name: Capture-Moment/docs
+edit_uri: edit/develop/docs/
+copyright: Copyright &copy; Capture Moment — GNU GPL v3
+
+# ------------------------------------------------------------------
+# Documentation source directory (where your .md files live)
+# ------------------------------------------------------------------
+docs_dir: docs
+# NOTE: must NOT be inside docs_dir (mkdocs requirement) — add "site/" to .gitignore
+site_dir: site
+
+# ------------------------------------------------------------------
+# Theme
+# ------------------------------------------------------------------
+theme:
+  name: material
+  language: en
+  logo: img/transparent-logo.png
+  favicon: img/favicon.png
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs            # sections as top tabs
+    - navigation.sections        # sections in the sidebar
+    - navigation.expand          # sub-sections expanded
+    - navigation.top             # "back to top" button
+    - navigation.footer          # previous/next page links
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy          # copy button on code blocks
+    - content.code.annotate      # annotations in code blocks
+    - content.tabs.link          # linked content tabs (Win/Linux/Mac!)
+
+# ------------------------------------------------------------------
+# Navigation — mirrors your existing docs/ structure
+# ------------------------------------------------------------------
+nav:
+  - Home: index.md
+
+  - Getting Started:
+      - Building Guide:
+          - Overview & Prerequisites: building/BUILDING_MAIN.md
+          - Windows: building/BUILDING_WINDOWS.md
+          - Linux: building/BUILDING_LINUX.md
+          - macOS: building/BUILDING_MACOS.md
+      - Dependencies:
+          - Halide: building/dependencies/INSTALLATION_HALIDE.md
+          - Qt6: building/dependencies/INSTALLATION_QT.md
+  
+  - Tests:
+      - Core Tests: testing/TESTS_CORE.md
+
+  - Architecture:
+      - General Architecture: architecture/GENERAL_ARCHITECTURE.md
+      - Core: 
+          - Core Design: architecture/core/CORE_DESIGN.md
+          - Image Pipeline: architecture/core/IMAGE_PIPELINE.md
+          - Image Processing: architecture/core/IMAGE_PROCESSING.md
+          - Operations: architecture/core/OPERATIONS.md
+          - Serializer: architecture/core/SERIALIZER.md
+
+      - Qt Core:
+          - UI Core Design: architecture/qt/core/QT_CORE_ARCHITECTURE.md
+          - Viewport Management: architecture/qt/core/VIEWPORT_MANAGEMENT.md
+      - Qt Desktop:
+          - UI Desktop Architecture: architecture/qt/desktop/QT_DESKTOP_ARCHITECTURE.md
+  
+  - Contributing: 
+          - Coding Guidelines: guidelines/CONTRIBUTING.md
+  
+  - API Reference: https://capture-moment.github.io/CaptureMoment/
+
+# ------------------------------------------------------------------
+# Markdown extensions
+# ------------------------------------------------------------------
+markdown_extensions:
+  # Admonitions: !!! note, !!! warning, !!! tip...
+  - admonition
+  - pymdownx.details          # collapsible admonitions
+  - pymdownx.superfences      # nested code blocks
+  # Content tabs: === "Windows" / === "Linux" / === "macOS"
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.mark
+  - pymdownx.critic           # review annotations
+  - pymdownx.keys             # keyboard shortcuts, e.g. ++ctrl+c++
+  - def_list                  # definition lists
+  - attr_list                 # { .class } attributes on elements
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true         # anchor links on headings
+  - footnotes
+
+# ------------------------------------------------------------------
+# Plugins
+# ------------------------------------------------------------------
+plugins:
+  - search
+
+# ------------------------------------------------------------------
+# Extras
+# ------------------------------------------------------------------
+extra:
+  social:
+    - icon: fontawesome/brands/linkedin
+      link: https://capturemoment.vercel.app/
+      name: Capture Moment Website
+    - icon: fontawesome/brands/github
+      link: https://github.com/Capture-Moment
+      name: Capture Moment on GitHub
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/capture-moment
+      name: Capture Moment on LinkedIn
+
+extra_css:
+  - stylesheets/custom.css
+
+
+extra_javascript: []
