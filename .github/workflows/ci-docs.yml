@@ -31,8 +31,8 @@ jobs:
           python-version: '3.12'
           cache: pip
 
-      - name: Install MkDocs + Material
-        run: pip install mkdocs mkdocs-material
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
       - name: Build site (strict)
         run: mkdocs build --strict
