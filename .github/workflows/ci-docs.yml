@@ -1,0 +1,63 @@
+# ==================================================================
+# CaptureMoment Docs — CI
+# develop -> validation build (strict)
+# main    -> build + deploy to GitHub Pages
+# ==================================================================
+
+name: Build & Deploy Docs
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+    branches: [develop, main]
+  workflow_dispatch:
+
+jobs:
+  # --------------------------------------------------------------
+  # Validation: runs on develop, PRs and main (before deploy)
+  # Fails on broken nav, missing files or dead internal links
+  # --------------------------------------------------------------
+  build:
+    name: Build documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install MkDocs + Material
+        run: pip install mkdocs mkdocs-material
+
+      - name: Build site (strict)
+        run: mkdocs build --strict
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  # --------------------------------------------------------------
+  # Deploy: only on push to main
+  # --------------------------------------------------------------
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
