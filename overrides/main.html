@@ -2,4 +2,5 @@
 {% block content %}
   {{ super() }}
   {% include "partials/chat.html" %}
+  <script type="module" src="{{ base_url }}/assets/js/chat-ui.js"></script>
 {% endblock %}

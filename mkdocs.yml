@@ -152,5 +152,4 @@ extra:
 extra_css:
   - stylesheets/custom.css
 
-extra_javascript:
-  - assets/js/chat-ui.js
+extra_javascript: []
