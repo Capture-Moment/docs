@@ -25,6 +25,7 @@ site_dir: site
 # ------------------------------------------------------------------
 theme:
   name: material
+  custom_dir: overrides
   language: en
   logo: img/transparent-logo.png
   favicon: img/favicon.png
@@ -141,9 +142,6 @@ plugins:
 # ------------------------------------------------------------------
 extra:
   social:
-    - icon: fontawesome/brands/linkedin
-      link: https://capturemoment.vercel.app/
-      name: Capture Moment Website
     - icon: fontawesome/brands/github
       link: https://github.com/Capture-Moment
       name: Capture Moment on GitHub
@@ -154,5 +152,5 @@ extra:
 extra_css:
   - stylesheets/custom.css
 
-
-extra_javascript: []
+extra_javascript:
+  - assets/js/chat-ui.js
