@@ -19,11 +19,12 @@ Before selecting your platform, ensure you have these tools:
 ## ⚙️ Global Build Configuration
 
 ### CMake Build
-|  Component | Default Status |     CMake Variable (Alias)    |                  Description                  |
+|  Component | Default Status |     CMake Variable (with Alias)    |                  Description                  |
 |:----------:|:--------------:|:-----------------------------:|:---------------------------------------------:|
 | Desktop UI | OFF            | BUILD_DESKTOP_UI (desktop_ui) | Builds the Qt Quick/QML desktop application.  |
 | Mobile UI  | OFF            | BUILD_MOBILE_UI (mobile_ui)   | Builds the mobile application (future phase). |
 | Tests      | OFF            | BUILD_TESTS (tests)           | Builds unit and integration tests.            |
+| Sanitizers      | OFF            | BUILD_SANITIZERS (sanitizers)           | Builds with sanitizer instrumentation (ASan, UBSan).            |
 | Benchmarks | OFF            | BUILD_BENCHMARKS (benchmarks) | Builds performance benchmarks.                |
 
 ### Libraries
