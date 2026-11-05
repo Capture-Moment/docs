@@ -11,12 +11,17 @@ This script compiles Exiv2 and OpenImageIO from source to guarantee version cons
 >Note: You can look inside this script if you prefer to run the installation steps manually.
 From the root of the project, run:
 
-#### Debian
+#### Debian / Ubuntu (apt)
 Tested on Ubuntu 26.04 LTS
 
 ```bash
 chmod +x setup/setup-debian.sh
 ./setup/setup-debian.sh
+```
+#### Fedora / RPM (dnf)
+```bash
+chmod +x setup/setup-dnf.sh
+./setup/setup-dnf.sh
 ```
 
 >🚨 Important: After the script, run in the terminal: `source ~/.bashrc`
