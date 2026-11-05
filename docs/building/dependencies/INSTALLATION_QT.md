@@ -8,65 +8,45 @@ CaptureMoment requires Qt 6.10.2 with the qtdeclarative and qtshadertools module
 * GuiPrivate
 * ShaderTools
 
-## Method 1: Qt Maintenance Tool (Official Installer)
+## Method 1: Qt Maintenance Tool (Official Installer, recommended for Windows & macOS)
 
 This is the easiest method if you are setting up a development environment on your own machine.
 
-* Download the Qt Online Installer for your operating system.
+* Download the Qt Online Installer from the official website Qt for your operating system.
+> Recommended for Windows & macOS
 
-## Method 2: aqtinstall (Command Line)
-This method is recommended for CI/CD pipelines or if you prefer a fast, scriptable installation without needing a Qt account.
+## Method 2: aqtinstall (Command Line, recommended for Linux)
+Recommended for Linux
 
-### Prerequisites
-You need Python and pip installed on your system.
-
-```bash
-pip3 install aqtinstall
-```
-
-#### Installation Commands
-##### On Linux (Ubuntu/Debian):
+### Install aqtinstall with pip
 
 ```bash
-aqt install-qt linux desktop 6.10.2 --outputdir /opt/qt -m qtdeclarative -m qtshadertools
+pip install aqtinstall
 ```
 
-##### On macOS:
-
+>💡 Linux note: on recent distributions, pip refuses to install outside a virtual environment, you can use venv or force install.
 ```bash
-aqt install-qt mac desktop 6.10.2 --outputdir /opt/qt -m qtdeclarative -m qtshadertools
+pip install --break-system-packages aqtinstall
 ```
 
-##### On Windows (PowerShell):
+To get familiar with aqtinstall, please refer to the [Website](https://aqtinstall.readthedocs.io/en/latest/getting_started.html)
 
+### Install Qt with aqt
+
+aqt installs into the current directory if no output is specified, which makes `CMAKE_PREFIX_PATH` unpredictable. Prefer an explicit output directory:
 ```bash
-aqt install-qt windows desktop 6.10.2 --outputdir C:\Qt -m qtdeclarative -m qtshadertools
+aqt install-qt linux desktop 6.10.2 linux_gcc_64 --outputdir /opt/qt -m qtdeclarative -m qtshadertools
 ```
 
-### Environment Configuration
+Or install into the current directory if you prefer to manage the path yourself:
+```bash
+aqt install-qt linux desktop 6.10.2 linux_gcc_64 -m qtdeclarative -m qtshadertools
+```
 
-if `CMAKE_PREFIX_PATH` don't know the Qt path. You need to set the follow methods: 
-
-#### On Linux
-Add this to your `~/.bashrc` (adjust the path if you used the Maintenance Tool):
-
+### Environment Configuration (recommended)
+If you have multiple version of Qt, it is better to define a single path with `CMAKE_PREFIX_PATH`
 
 ```bash
 export CMAKE_PREFIX_PATH="/opt/qt/6.10.2/gcc_64:${CMAKE_PREFIX_PATH}"
+# Or replace by your path
 ```
-
-#### On macOS
-Add this to your `~/.zshrc` (adjust the path if you used the Maintenance Tool, e.g., ~/Qt/6.10.2/macos):
-
-
-```bash
-export CMAKE_PREFIX_PATH="/opt/qt/6.10.2/macos:${CMAKE_PREFIX_PATH}"
-```
-
-#### On Windows
-Add this to your System Environment Variables via the Windows Search bar ("Edit the system environment variables" -> Environment Variables -> User variables):
-
-* **Variable name:** `CMAKE_PREFIX_PATH`
-* **Variable value:** `C:\Qt\6.10.2\msvc2022_64` (Adjust `msvc2022_64` based on your Visual Studio version, e.g., `mingw_64` if you use MinGW).
-* 
-Restart your computer after setting these variables!
