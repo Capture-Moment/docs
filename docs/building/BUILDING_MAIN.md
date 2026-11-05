@@ -51,8 +51,11 @@ Before selecting your platform, ensure you have these tools:
 ### 3. Setup Dependencies & Compile
 git clone the project
 ```bash
-git clone https://github.com/Capture-Moment/CaptureMoment
+# Clone from develop branch
+git clone --branch develop --single-branch https://github.com/Capture-Moment/CaptureMoment.git
 cd CaptureMoment
+
+# Or from your Fork
 ```
 
 ### 4. Setup Dependencies & Compile
