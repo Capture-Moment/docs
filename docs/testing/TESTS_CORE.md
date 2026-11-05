@@ -5,7 +5,7 @@ This guide for running the tests.
 We use Sanitizers and GoogleTest
 
 ## Example on Windows MSVC
-```PowerShell
+```bash
 cmake --preset release-vcpkg-msvc -Dtests="on" -Dsanitizers="on"
 cmake --build --preset release-vcpkg-msvc
 ctest --preset release-vcpkg-msvc
