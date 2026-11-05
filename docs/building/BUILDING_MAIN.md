@@ -49,6 +49,13 @@ Before selecting your platform, ensure you have these tools:
 ➡️ Read the Building Qt Guide
 
 ### 3. Setup Dependencies & Compile
+git clone the project
+```bash
+git clone https://github.com/Capture-Moment/CaptureMoment
+cd CaptureMoment
+```
+
+### 4. Setup Dependencies & Compile
 Click the link for your OS for detailed instructions:
 
 * [🟦 **Windows**](BUILDING_WINDOWS.md).
