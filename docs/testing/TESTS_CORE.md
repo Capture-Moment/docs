@@ -6,14 +6,20 @@ We use Sanitizers and GoogleTest
 
 ## Example on Windows MSVC
 ```bash
-cmake --preset release-vcpkg-msvc -Dtests="on" -Dsanitizers="on"
-cmake --build --preset release-vcpkg-msvc
-ctest --preset release-vcpkg-msvc
+cmake --preset debug-vcpkg-msvc -Dtests="on" -Dsanitizers="on"
+cmake --build --preset debug-vcpkg-msvc
+ctest --preset debug-vcpkg-msvc
 ```
 ## Example on Linux with Ninja
 ```bash
-cmake --preset release-ninja -Dtests="on" -Dsanitizers="on"
-cmake --build --preset release-ninja
-ctest --preset release-ninja
+cmake --preset debug-ninja -Dtests="on" -Dsanitizers="on"
+cmake --build --preset debug-ninja
+ctest --preset debug-ninja
 ```
 
+## Example on macOS with Ninja
+```bash
+cmake --preset debug-homebrew -Dtests="on" -Dsanitizers="on"
+cmake --build --preset debug-homebrew
+ctest --preset debug-homebrew
+```
