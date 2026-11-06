@@ -66,7 +66,5 @@ ldd build/release-ninja/CaptureMoment | grep "not found"
 
 |  Preset Name |    Generator   | Build Type |                       Notes                      |
 |:------------:|:--------------:|:----------:|:------------------------------------------------:|
-| debug-ninja  | Ninja          | Debug      | Ninja generator for fast build (recommended).    |
-| release-ninja| Ninja          | Release    | Ninja generator for fast build (recommended).    |
-| release-make | Unix Makefiles | Release    | Classic Makefiles generator.                     |
-| debug-make   | Unix Makefiles | Debug      | Classic Makefiles generator.                     |
+| debug-ninja  | Ninja          | Debug      | Ninja generator for fast build.                  |
+| release-ninja| Ninja          | Release    | Ninja generator for fast build.                  |
