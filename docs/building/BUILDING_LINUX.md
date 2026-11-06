@@ -1,47 +1,64 @@
 # 🐧 Linux Building Guide
 This guide covers building CaptureMoment on Linux. The recommended method uses an automated script to build dependencies from source, ensuring you get the exact same versions and configuration as our CI pipeline.
 
-## 📦 Setting up Dependencies (Recommended) on Ubuntu/Debian
 
+## 📦 Setting up Dependencies (Recommended) on Ubuntu/Debian
+>Make sure you have GCC 16+
 
 ### 1. Run the automated setup script
-This method uses an automated script that compiles Exiv2, OpenImageIO, and magic_enum from source to guarantee version consistency.
+This script compiles Exiv2 and OpenImageIO from source to guarantee version consistency.
 
+>Note: You can look inside this script if you prefer to run the installation steps manually.
 From the root of the project, run:
 
+#### Debian / Ubuntu (apt)
+Tested on Ubuntu 26.04 LTS
+
 ```bash
-chmod +x setup/setup-ubuntu.sh
-./setup/setup-ubuntu.sh
+chmod +x setup/setup-debian.sh
+./setup/setup-debian.sh
 ```
-(Note: You can look inside this script if you prefer to run the installation steps manually).
+#### Fedora / RPM (dnf)
+```bash
+chmod +x setup/setup-dnf.sh
+./setup/setup-dnf.sh
+```
 
-If system packages are unavailable, too old, or if you need specific configurations not provided by your distribution. You need to adapt.
+>🚨 Important: After the script, run in the terminal: `source ~/.bashrc`
 
-## 🚀Build the project
-* You can omit -DBUILD_DESKTOP_UI=ON if you don't want to compile the UI.
+>Note:  If a system package is outdated on your distribution, please open an issue to let us know, and adapt the installation accordingly.
+
+### 2. Start the project
+
+#### Configure the project
 * You can swap release-ninja for debug-ninja (or any other preset from the table below).
 
 ```bash
-# Configure the project using a generic preset and enable the Desktop UI
+# Configure the project using a generic preset
+cmake --preset debug-ninja -DBUILD_SANITIZERS=ON -DBUILD_TESTS=ON
+
+# Or, for a release build
 cmake --preset release-ninja -DBUILD_DESKTOP_UI=ON
-
-# Or, for a debug build:
-# cmake --preset debug-ninja -DBUILD_DESKTOP_UI=ON
-
-# Compile using all available CPU cores
-cmake --build build/release-ninja -j$(nproc) # Adjust path if using debug preset
 ```
 
-### Alternative Build Commands
-
-Since dependencies are installed system-wide (in /opt/ or /usr/local/), we use generic presets.
-
+##### Add Qt UI
+* You can add -DBUILD_DESKTOP_UI=ON to compile with Qt
 ```bash
-# Configure in Debug and enable the UI
-cmake --preset debug -Ddesktop_ui=ON
+# Adapt $HOME/Qt to your installation path
+cmake --preset release-ninja -DBUILD_DESKTOP_UI=ON -DQt6_DIR="$HOME/Qt/6.10.2/gcc_64/lib/cmake/Qt6"
+```
 
-# Compile using all available cores
-cmake --build build/debug -j$(nproc)
+#### Build the project
+```bash
+cmake --build --preset debug-ninja
+# Compile using all available CPU cores
+cmake --build --preset debug-ninja -j$(nproc)
+```
+
+#### Run the Qt Desktop
+```bash
+ldd build/release-ninja/CaptureMoment | grep "not found"
+./build/release-ninja/CaptureMoment
 ```
 
 ---
@@ -49,12 +66,7 @@ cmake --build build/debug -j$(nproc)
 
 |  Preset Name |    Generator   | Build Type |                       Notes                      |
 |:------------:|:--------------:|:----------:|:------------------------------------------------:|
-| default      | Auto-detect    | Debug      | Auto-detects the generator (Ninja or Makefiles). |
-| debug        | Auto-detect    | Debug      | Base preset for development.                     |
-| release      | Auto-detect    | Release    | Optimized build.                                 |
 | debug-ninja  | Ninja          | Debug      | Ninja generator for fast build (recommended).    |
 | release-ninja| Ninja          | Release    | Ninja generator for fast build (recommended).    |
 | release-make | Unix Makefiles | Release    | Classic Makefiles generator.                     |
 | debug-make   | Unix Makefiles | Debug      | Classic Makefiles generator.                     |
-| release-ninja-linux | Ninja | Release    | Classic Makefiles generator.                     |
-| debug-ninja-linux  | Ninja | Debug      | Classic Makefiles generator.                     |

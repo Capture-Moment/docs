@@ -30,12 +30,11 @@ Capture Moment relies on a complex, high-performance C++ toolchain (C++20/23, Ha
 
 ####⚙️ Development CMake Configuration
 To ensure all necessary checks and components are available during development, you must explicitly enable the UI and the test suite:
-```powershell
+```bash
 # Example configuration for development (enables Desktop UI and Tests)
 cmake --preset debug-vcpkg-msvc -Ddesktop_ui=ON -Dtests=ON 
 # Compilation
 cmake --build build/debug-vcpkg-msvc
-
 ```
 
 ### 📝 Code Standards and Pull Request Lifecycle
