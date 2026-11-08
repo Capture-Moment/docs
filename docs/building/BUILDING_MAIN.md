@@ -12,6 +12,10 @@ Before selecting your platform, ensure you have these tools:
     * **Windows**: MSVC 2026.
     * **Linux**: GCC 16+
     * **macOS**: Apple Clang 16+ (Xcode 15+).
+3.  **Python 3.12+** — used to fetch the Halide wheel. The platform setup scripts install
+    it into a project virtualenv (`<repo>/.venv`); 3.12 is the minimum because the wheels
+    are built as `cp312-abi3`.
+4.  **Ninja** — the generator used by every recommended preset.
 
 ---
 ## ⚙️ Global Build Configuration
