@@ -77,7 +77,6 @@ nav:
           - Linux: building/BUILDING_LINUX.md
           - macOS: building/BUILDING_MACOS.md
       - Dependencies:
-          - Halide: building/dependencies/INSTALLATION_HALIDE.md
           - Qt6: building/dependencies/INSTALLATION_QT.md
   
   - Tests:

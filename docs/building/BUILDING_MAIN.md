@@ -12,6 +12,7 @@ Before selecting your platform, ensure you have these tools:
     * **Windows**: MSVC 2026.
     * **Linux**: GCC 16+
     * **macOS**: Apple Clang 16+ (Xcode 15+).
+3. **Python 3+**
 
 ---
 ## ⚙️ Global Build Configuration
@@ -40,13 +41,10 @@ Before selecting your platform, ensure you have these tools:
 ---
 ## 📦 How to build
 
-### 1. Build Halide
-➡️ Read the guide for Halide.
-
-### 2. Setup Qt (Optional - Required for UI only)
+### 1. Setup Qt (Optional - Required for UI only)
 ➡️ Read the Building Qt Guide
 
-### 3. Setup Dependencies & Compile
+### 2. Setup Dependencies & Compile
 git clone the project
 ```bash
 # Clone from develop branch
