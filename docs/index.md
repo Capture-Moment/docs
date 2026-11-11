@@ -13,9 +13,8 @@ New to the project? Start here:
   [Windows](building/BUILDING_WINDOWS.md),
   [Linux](building/BUILDING_LINUX.md) and
   [macOS](building/BUILDING_MACOS.md)
-- **[Dependencies](building/dependencies/INSTALLATION_HALIDE.md)** —
-  installing [Halide](building/dependencies/INSTALLATION_HALIDE.md) and
-  [Qt 6](building/dependencies/INSTALLATION_QT.md)
+- **[Dependencies]: ** 
+     - [Qt 6](building/dependencies/INSTALLATION_QT.md)
 - **[Running Tests](testing/TESTS_CORE.md)** — building and running the
   test suites
 
